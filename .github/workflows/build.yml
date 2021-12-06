@@ -1,0 +1,28 @@
+name: build
+
+on: [push]
+
+jobs:
+  build-test:
+    name: "Build program"
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.x'
+      - name: Publish
+        run: "dotnet publish -o release/ --runtime win-x64 --self-contained true /p:PublishSingleFile=true /p:DebugType=none /p:IncludeNativeLibrariesForSelfExtract=true  -p:PublishReadyToRun=true -c Release"
+        working-directory: ./automation
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "${{ env.TAG }}"
+          prerelease: true
+          files: testBuild.exe
+      # - name: Upload automation Build Artifact
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     path: D:\a\SearchCloudIAC\SearchCloudIAC\automation\release\automation.exe         
+      
