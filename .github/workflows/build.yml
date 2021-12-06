@@ -21,9 +21,5 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "${{ env.TAG }}"
           prerelease: true
-          files: testBuild.exe
-      # - name: Upload automation Build Artifact
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     path: D:\a\SearchCloudIAC\SearchCloudIAC\automation\release\automation.exe         
+          files: testBuild.exe 
       
