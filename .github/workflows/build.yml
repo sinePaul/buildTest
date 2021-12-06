@@ -22,8 +22,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.TAG_NAME }}
-          release_name: Nightly Release ${{ env.TAG_NAME }}
+          tag_name: ${{ env.TAG }}
+          release_name: Nightly Release ${{ env.TAG }}
           body: Body for the release
           keep_num: 0
           keep_tags: false
