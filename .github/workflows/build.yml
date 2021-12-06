@@ -6,7 +6,6 @@ jobs:
   build-test:
     name: "Build program"
     runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Get the tag name
