@@ -15,16 +15,12 @@ jobs:
           dotnet-version: '5.0.x'
       - name: Publish
         run: "dotnet publish -o release/ --runtime win-x64 --self-contained true /p:PublishSingleFile=true /p:DebugType=none /p:IncludeNativeLibrariesForSelfExtract=true  -p:PublishReadyToRun=true -c Release"
-      - name: Create nightly release
-        id: create_release
-        uses: viperproject/create-nightly-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update nightly release
+        uses: eine/tip@master
         with:
-          tag_name: ${{ env.TAG }}
-          release_name: Nightly Release ${{ env.TAG }}
-          body: Body for the release
-          keep_num: 0
-          keep_tags: false
+          tag: nightly
+          # rm: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: release/testBuild.exe
  
       
